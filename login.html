@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Bazaar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html, body {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            background: -webkit-linear-gradient(left, #ADD8E6, #B0E0E6, #87CEFA, #00BFFF); /* Light blue gradient background */
+        }
+        ::selection {
+            background: #00BFFF; /* Blue selection background */
+            color: #fff;
+        }
+        .wrapper {
+            overflow: hidden;
+            max-width: 600px; /* Increased size */
+            background: #fff;
+            padding: 50px; /* Increased padding */
+            border-radius: 25px; /* Increased border radius */
+            box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.2);
+            position: relative; /* Added for positioning the home button */
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 36px;
+            color: #333;
+        }
+        .header h2 {
+            font-size: 18px;
+            color: #666;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #00BFFF; /* Blue background */
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .home-button:hover {
+            background-color: #1E90FF; /* Darker blue on hover */
+        }
+        .wrapper .title-text {
+            display: flex;
+            width: 200%;
+        }
+        .wrapper .title {
+            width: 50%;
+            font-size: 40px;
+            font-weight: 600;
+            text-align: center;
+            color: #000; /* Black color for title */
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .wrapper .slide-controls {
+            position: relative;
+            display: flex;
+            height: 60px;
+            width: 100%;
+            overflow: hidden;
+            margin: 30px 0 15px 0;
+            justify-content: space-between;
+            border: 1px solid lightgrey;
+            border-radius: 20px;
+        }
+        .slide-controls .slide {
+            height: 100%;
+            width: 100%;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+            line-height: 58px;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.6s ease;
+        }
+        .slide-controls label.signup {
+            color: #000;
+        }
+        .slide-controls .slider-tab {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            left: 0;
+            z-index: 0;
+            border-radius: 15px;
+            background: -webkit-linear-gradient(left, #1E90FF, #4682B4, #4169E1, #0000FF); /* Blue gradient */
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        input[type="radio"] {
+            display: none;
+        }
+        #signup:checked ~ .slider-tab {
+            left: 50%;
+        }
+        #signup:checked ~ label.signup {
+            color: #fff;
+            cursor: default;
+            user-select: none;
+        }
+        #signup:checked ~ label.login {
+            color: #000;
+        }
+        #login:checked ~ label.signup {
+            color: #000;
+        }
+        #login:checked ~ label.login {
+            cursor: default;
+            user-select: none;
+        }
+        .wrapper .form-container {
+            width: 100%;
+            overflow: hidden;
+        }
+        .form-container .form-inner {
+            display: flex;
+            width: 200%;
+        }
+        .form-container .form-inner form {
+            width: 50%;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .form-inner form .field {
+            height: 60px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .form-inner form .field input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            padding-left: 15px;
+            border-radius: 20px;
+            border: 1px solid lightgrey;
+            border-bottom-width: 2px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        .form-inner form .field input:focus {
+            border-color: #00BFFF; /* Blue focus border */
+        }
+        .form-inner form .field input::placeholder {
+            color: #999;
+            transition: all 0.3s ease;
+        }
+        form .field input:focus::placeholder {
+            color: #00BFFF; /* Blue placeholder on focus */
+        }
+        .form-inner form .pass-link {
+            margin-top: 5px;
+        }
+        .form-inner form .signup-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .form-inner form .pass-link a,
+        .form-inner form .signup-link a {
+            color: #00BFFF; /* Blue links */
+            text-decoration: none;
+        }
+        .form-inner form .pass-link a:hover,
+        .form-inner form .signup-link a:hover {
+            text-decoration: underline;
+        }
+        form .btn {
+            height: 60px;
+            width: 100%;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        form .btn .btn-layer {
+            height: 100%;
+            width: 300%;
+            position: absolute;
+            left: -100%;
+            background: -webkit-linear-gradient(right, #1E90FF, #4682B4, #4169E1, #0000FF); /* Blue gradient */
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+        form .btn:hover .btn-layer {
+            left: 0;
+        }
+        form .btn input[type="submit"] {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+            position: relative;
+            background: none;
+            border: none;
+            color: #fff;
+            padding-left: 0;
+            border-radius: 20px;
+            font-size: 22px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .g-signin2 {
+            width: 100%; /* Full-width button */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="index.html" class="home-button">Home</a>
+        <div class="header">
+            <h1>Kisan Bazaar</h1>
+            <h2>Fresh Local Produce Delivered to Your Doorstep</h2>
+        </div>
+        <div class="slide-controls">
+            <input type="radio" name="slide" id="login" checked>
+            <input type="radio" name="slide" id="signup">
+            <label for="login" class="slide login">Login</label>
+            <label for="signup" class="slide signup">Signup</label>
+            <div class="slider-tab"></div>
+        </div>
+        <div class="form-container">
+            <div class="form-inner">
+                <form action="#" class="login">
+                    <div class="field">
+                        <input type="text" placeholder="Email Address" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="pass-link"><a href="#">Forgot password?</a></div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Login">
+                    </div>
+                    <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+                    <!-- Google Sign-In Button -->
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </form>
+                <form action="#" class="signup">
+                    <div class="field">
+                        <input type="text" placeholder="Email Address" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Confirm password" required>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Signup">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+
+            // You can also send this information to your server for further processing.
+        }
+
+        const loginText = document.querySelector(".title-text .login");
+        const loginForm = document.querySelector("form.login");
+        const loginBtn = document.querySelector("label.login");
+        const signupBtn = document.querySelector("label.signup");
+        const signupLink = document.querySelector("form .signup-link a");
+
+        signupBtn.onclick = () => {
+            loginForm.style.marginLeft = "-50%";
+            loginText.style.marginLeft = "-50%";
+        };
+        loginBtn.onclick = () => {
+            loginForm.style.marginLeft = "0%";
+            loginText.style.marginLeft = "0%";
+        };
+        signupLink.onclick = () => {
+            signupBtn.click();
+            return false;
+        };
+    </script>
+</body>
+</html>

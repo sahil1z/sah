@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Apple",
+    "category": "Fruits",
+    "brand": "ExampleBrand",
+    "price": 50.00,
+    "stock": 50,
+    "description": "Fresh, crisp apples in a variety of flavors perfect for snacking or cooking. ",
+    "image": "../images/apple1.png"
+  },
+  {
+    "id": 2,
+    "name": "Banana",
+    "category": "Fruits",
+    "brand": "",
+    "price": 50.00,
+    "stock": 100,
+    "image": "../images/banana.png",
+    "description": "Sweet, ripe bananas with a creamy texture ideal for a quick snack  "
+  },
+  {
+    "id": 3,
+    "name": "WaterMelon",
+    "category": "Fruits",
+    "brand": "",
+    "price": 149.99,
+    "stock": 30,
+    "image": "../images/watermelon.png",
+    "description": "Juicy, refreshing watermelon with a crisp texture, perfect for a summer treat."
+  },
+  {
+    "id": 4,
+    "name": "Onion",
+    "category": "Vegetables",
+    "brand": "",
+    "price": 199.99,
+    "stock": 20,
+    "image": "../images/onions.png",
+    "description": "Pungent, sharp onions with a crunchy bite, essential for adding flavor."
+  },
+  {
+    "id": 5,
+    "name": "Carrot",
+    "category": "Vegetables",
+    "brand": "",
+    "price": 149.99,
+    "stock": 30,
+    "image": "../images/carrot.png",
+    "description": "Crunchy, sweet carrots with a firm texture, ideal for a healthy snack."
+  },
+  {
+    "id": 6,
+    "name": "Potato",
+    "category": "Vegetables",
+    "brand": "",
+    "price": 199.99,
+    "stock": 20,
+    "image": "../images/potato.png",
+    "description": "Starchy, versatile potatoes with a fluffy inside, great for any dish."
+  }
+]
